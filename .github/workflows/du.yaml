@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Run du -h
         run: |
-           sudo du -h / --threshold=1G > /tmp/du-${{matrix.os}}.txt
+           sudo du -h / --threshold=1G | tee /tmp/du-${{matrix.os}}.txt
 
       - name: Upload du output
         uses: actions/upload-artifact@v3
