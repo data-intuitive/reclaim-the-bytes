@@ -43,63 +43,65 @@ runs:
       shell: bash
       run: df -h
 
-    - name: Reclaim the bytes
+    - name: Remove dotnet
       shell: bash
+      if: inputs.remove-dotnet == 'true'
       run: |
-        set -euo pipefail
+        sudo rm -rf /usr/share/dotnet/shared/
+        sudo rm -rf /usr/share/dotnet/host/
+        sudo rm -rf /usr/share/dotnet/sdk/
 
-        if [[ ${{ inputs.remove-dotnet }} == 'true' ]]; then
-          echo "Removing dotnet"
-          sudo rm -rf /usr/share/dotnet/shared/
-          sudo rm -rf /usr/share/dotnet/host/
-          sudo rm -rf /usr/share/dotnet/sdk/
-        fi
+    - name: Remove android
+      shell: bash
+      if: inputs.remove-android == 'true'
+      run: |
+        sudo rm -rf "$ANDROID_SDK_ROOT"
+        sudo rm -rf /usr/local/lib/android
 
-        if [[ ${{ inputs.remove-android }} == 'true' ]]; then
-          echo "Removing android"
-          sudo rm -rf "$ANDROID_SDK_ROOT"
-          sudo rm -rf /usr/local/lib/android
-        fi
+    - name: Remove GHC Haskell
+      shell: bash
+      if: inputs.remove-haskell == 'true'
+      run: |
+        sudo rm -rf /opt/ghc
 
-        if [[ ${{ inputs.remove-haskell }} == 'true' ]]; then
-          echo "Removing haskell"
-          sudo rm -rf /opt/ghc
-        fi
+    - name: Remove CodeQL
+      shell: bash
+      if: inputs.remove-haskell == 'true'
+      run: |
+        sudo rm -rf /opt/hostedtoolcache/CodeQL
 
-        if [[ ${{ inputs.remove-codeql }} == 'true' ]]; then
-          echo "Removing codeql"
-          sudo rm -rf /opt/hostedtoolcache/CodeQL
-        fi
+    - name: Remove Docker images
+      shell: bash
+      if: inputs.remove-docker-images == 'true'
+      run: |
+        sudo docker image prune --all --force
 
-        if [[ ${{ inputs.remove-docker-images }} == 'true' ]]; then
-          echo "Removing Docker images"
-          sudo docker image prune --all --force
-        fi
+    - name: Remove Swap
+      shell: bash
+      if: inputs.remove-swap == 'true'
+      run: |
+        sudo swapoff -a
+        sudo rm -f /swapfile
 
-        if [[ ${{ inputs.remove-swap }} == 'true' ]]; then
-          echo "Removing swap"
-          sudo swapoff -a
-          sudo rm -f /swapfile
-        fi
+    - name: Remove Boost
+      shell: bash
+      if: inputs.remove-boost == 'true'
+      run: |
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
-        if [[ ${{ inputs.remove-boost }} == 'true' ]]; then
-          echo "Removing boost"
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-        fi
+    - name: Remove Swift
+      shell: bash
+      if: inputs.remove-swift == 'true'
+      run: |
+        sudo rm -rf "$SWIFT_PATH"
+        sudo rm -rf /usr/share/swift
 
-        if [[ ${{ inputs.remove-swift }} == 'true' ]]; then
-          echo "Removing swift"
-          sudo rm -rf "$SWIFT_PATH"
-          sudo rm -rf /usr/share/swift
-        fi
-
-        if [[ ${{ inputs.apt-clean }} == 'true' ]]; then
-          echo "Run apt-get clean"
-          sudo apt-get clean
-        fi
-
-        # sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
+    - name: Run apt clean
+      shell: bash
+      if: inputs.apt-clean == 'true'
+      run: |
+        sudo apt-get clean
 
     - name: Disk space report after modification
       shell: bash
