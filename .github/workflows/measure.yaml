@@ -1,10 +1,10 @@
 name: Measure effect of CI
 on:
   workflow_dispatch:
-  schedule:
-    # weekly, randomly chosen time
-    - cron: "17 18 * * 0"
   push:
+  schedule:
+    # daily
+    - cron: "16 16 * * *"
 
 jobs:
   measure:
@@ -68,14 +68,14 @@ jobs:
           echo "Duration         : ${DURATION}s"
 
           cat > "$OUTPUT_JSON" << HERE
-            [{
-              "os":                    "${{ matrix.os }}",
-              "to_remove":             "${{ matrix.to-remove}}",
-              "space_free_before":     "${{ steps.before.outputs.disk_free }}",
-              "space_free_after":      "${{ steps.after.outputs.disk_free }}",
-              "space_freed":           "${FREED_DISK}",
-              "duration":              "${DURATION}"
-            }]
+          [{
+            "os": "${{ matrix.os }}",
+            "to_remove": "${{ matrix.to-remove}}",
+            "space_free_before": "${{ steps.before.outputs.disk_free }}",
+            "space_free_after": "${{ steps.after.outputs.disk_free }}",
+            "space_freed": "${FREED_DISK}",
+            "duration": "${DURATION}"
+          }]
           HERE
 
       - name: Upload disk space report
