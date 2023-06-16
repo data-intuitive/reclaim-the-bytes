@@ -1,0 +1,108 @@
+name: Generate report
+on:
+  workflow_dispatch:
+  schedule:
+    # weekly, randomly chosen time
+    - cron: "17 18 * * 0"
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  test-action:
+    name: Test action
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-20.04
+          - ubuntu-22.04
+        remove-packages:
+          - dotnet
+          - android
+          - haskell
+          - codeql
+          - docker-images
+          - large-packages
+
+    steps:
+      - name: Check out Maximize Build Space action
+        uses: actions/checkout@v2
+        with:
+          path: ./.github/actions/maximize-test
+
+      - name: Record starting conditions
+        id: before
+        run: |
+          echo "disk_free=$(df --output=avail --sync -BG "${{ github.workspace }}" | tail -1 | sed 's/[^0-9]*//g')" >> $GITHUB_OUTPUT
+          printf 'timestamp=%(%s)T\n' >> "$GITHUB_OUTPUT"
+
+      - name: Maximize build space
+        uses: ./.github/actions/maximize-test
+        with:
+          remove-packages: ${{ matrix.remove-packages }}
+
+      - name: Record stopping conditions
+        id: after
+        run: |
+          echo "disk_free=$(df --output=avail --sync -BG "${{ github.workspace }}" | tail -1 | sed 's/[^0-9]*//g')" >> $GITHUB_OUTPUT
+          printf 'timestamp=%(%s)T\n' >> "$GITHUB_OUTPUT"
+
+      - name: Calculate freed space
+        id: report
+        run: |
+          OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.remove-packages}}.json"
+          echo "output_json=$OUTPUT_JSON" >> $GITHUB_OUTPUT
+
+          DURATION=$((${{ steps.after.outputs.timestamp }} - ${{ steps.before.outputs.timestamp }}))
+          FREED_DISK=$((${{ steps.after.outputs.disk_free }} - ${{ steps.before.outputs.disk_free }}))
+          
+          echo "Free space before: ${{ steps.before.outputs.disk_free }}G"
+          echo "Free space after : ${{ steps.after.outputs.disk_free }}G"
+          echo "Space freed      : ${FREED_DISK}G"
+          echo "Duration         : ${DURATION}"
+
+          cat > "$OUTPUT_JSON" << HERE
+            {
+              "os":                    "${{ matrix.os }}",
+              "remove_packages":       "${{ matrix.remove-packages}},
+              "space_free_before":     "${{ steps.before.outputs.disk_free }}",
+              "space_free_after":      "${{ steps.after.outputs.disk_free }}",
+              "space_freed":           "${FREED_DISK}",
+              "duration":              "${DURATION}"
+            }
+          HERE
+
+      - name: Upload disk space report
+        uses: actions/upload-artifact@v2
+        with:
+          name: output_json
+          path: ${{ steps.report.outputs.output_json }}
+
+  collect-jsons:
+    name: Collect jsons
+    runs-on: ubuntu-latest
+    needs: test-action
+    env:
+      REPORT_DIR: /tmp/report
+
+    steps:
+      - name: Download single jsons
+        uses: actions/download-artifact@v2
+        with:
+          name: output_json
+          path: ${{ env.REPORT_DIR }}
+
+      - name: Merge json files
+        run: |
+          jq -s add "${{ env.REPORT_DIR }}/single_*.json" > "${{ env.REPORT_DIR }}/merged.json"
+
+      - name: Upload merged json
+        uses: actions/upload-artifact@v2
+        with:
+          name: disk-space-report-markdown
+          path: ${{ env.REPORT_DIR }}/merged.json"
