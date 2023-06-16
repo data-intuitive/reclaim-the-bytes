@@ -1,0 +1,26 @@
+name: Run du -h
+on:
+  workflow_dispatch:
+
+jobs:
+  run-du-h:
+    name: Run du -h
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-20.04
+          - ubuntu-22.04
+
+    steps:
+      - name: Run du -h
+        run: |
+           sudo du -h / --threshold=1G > /tmp/du-${{matrix.os}}.txt
+
+      - name: Upload du output
+        uses: actions/upload-artifact@v3
+        with:
+          name: du-h
+          path: /tmp/du-${{matrix.os}}.txt
