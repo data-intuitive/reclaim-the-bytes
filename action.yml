@@ -4,36 +4,40 @@ branding:
   icon: 'crop'
   color: 'orange'
 inputs:
-  remove-dotnet:
-    description: 'Remove .NET runtime and libraries. Default: `true`.'
+  remove-go:
+    description: 'Remove Go libraries. Default: `true`.'
     required: false
     default: 'true'
-  remove-android:
-    description: 'Remove Android SDKs and Tools. Default: `true`.'
-    required: false
-    default: 'true'
-  remove-haskell:
-    description: 'Remove GHC (Haskell) artifacts. Default: `true`.'
+  remove-python:
+    description: 'Remove Python libraries. Default: `true`.'
     required: false
     default: 'true'
   remove-codeql:
-    description: 'Remove CodeQL Action Bundles. Default: `true`.'
+    description: 'Remove CodeQL. Default: `true`.'
+    required: false
+    default: 'true'
+  remove-powershell:
+    description: 'Remove PowerShell. Default: `true`.'
+    required: false
+    default: 'true'
+  remove-android-sdk:
+    description: 'Remove Android SDK. Default: `true`.'
+    required: false
+    default: 'true'
+  remove-haskell-ghc:
+    description: 'Remove Haskell GHC. Default: `true`.'
+    required: false
+    default: 'true'
+  remove-swift:
+    description: 'Remove Swift. Default: `true`.'
+    required: false
+    default: 'true'
+  remove-dotnet:
+    description: 'Remove .NET. Default: `true`.'
     required: false
     default: 'true'
   remove-docker-images:
     description: 'Remove cached Docker images. Default: `true`.'
-    required: false
-    default: 'true'
-  remove-swap:
-    description: 'Remove swap. Default: `true`.'
-    required: false
-    default: 'true'
-  remove-boost:
-    description: 'Remove boost. Default: `true`.'
-    required: false
-    default: 'true'
-  apt-clean:
-    description: 'Run apt-get clean. Default: `true`.'
     required: false
     default: 'true'
 runs:
@@ -43,26 +47,17 @@ runs:
       shell: bash
       run: df -h
 
-    - name: Remove dotnet
+    - name: Remove Go
       shell: bash
-      if: inputs.remove-dotnet == 'true'
+      if: inputs.remove-go == 'true'
       run: |
-        sudo rm -rf /usr/share/dotnet/shared/
-        sudo rm -rf /usr/share/dotnet/host/
-        sudo rm -rf /usr/share/dotnet/sdk/
+        sudo rm -rf /opt/hostedtoolcache/go
 
-    - name: Remove android
+    - name: Remove Python
       shell: bash
-      if: inputs.remove-android == 'true'
+      if: inputs.remove-python == 'true'
       run: |
-        sudo rm -rf "$ANDROID_SDK_ROOT"
-        sudo rm -rf /usr/local/lib/android
-
-    - name: Remove GHC Haskell
-      shell: bash
-      if: inputs.remove-haskell == 'true'
-      run: |
-        sudo rm -rf /opt/ghc
+        sudo rm -rf /opt/hostedtoolcache/python
 
     - name: Remove CodeQL
       shell: bash
@@ -70,38 +65,41 @@ runs:
       run: |
         sudo rm -rf /opt/hostedtoolcache/CodeQL
 
-    - name: Remove Docker images
+    - name: Remove PowerShell
       shell: bash
-      if: inputs.remove-docker-images == 'true'
+      if: inputs.remove-powershell == 'true'
       run: |
-        sudo docker image prune --all --force
+        sudo rm -rf /usr/local/share/powershell
 
-    - name: Remove Swap
+    - name: Remove Android SDK
       shell: bash
-      if: inputs.remove-swap == 'true'
+      if: inputs.remove-android-sdk == 'true'
       run: |
-        sudo swapoff -a
-        sudo rm -f /swapfile
+        sudo rm -rf /usr/local/lib/android
 
-    - name: Remove Boost
+    - name: Remove Haskell GHC
       shell: bash
-      if: inputs.remove-boost == 'true'
+      if: inputs.remove-haskell-ghc == 'true'
       run: |
-        sudo rm -rf "/usr/local/share/boost"
-        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+        sudo rm -rf /usr/local/.ghcup/ghc
 
     - name: Remove Swift
       shell: bash
       if: inputs.remove-swift == 'true'
       run: |
-        sudo rm -rf "$SWIFT_PATH"
         sudo rm -rf /usr/share/swift
 
-    - name: Run apt clean
+    - name: Remove .NET
       shell: bash
-      if: inputs.apt-clean == 'true'
+      if: inputs.remove-dotnet == 'true'
       run: |
-        sudo apt-get clean
+        sudo rm -rf /usr/share/dotnet
+
+    - name: Remove Docker images
+      shell: bash
+      if: inputs.remove-docker-images == 'true'
+      run: |
+        sudo docker image prune --all --force
 
     - name: Disk space report after modification
       shell: bash

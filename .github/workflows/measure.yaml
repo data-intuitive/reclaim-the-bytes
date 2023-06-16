@@ -14,18 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-20.04
-          - ubuntu-22.04
-        setting:
-          - dotnet
-          - android
-          - haskell
-          - codeql
-          - docker-images
-          - swap
-          - boost
-          - apt-clean
+        os: [ubuntu-20.04, ubuntu-22.04]
+        setting: [go, python, codeql, powershell, android-sdk, haskell-ghc, swift, dotnet, docker-images]
         run: [1, 2, 3, 4, 5]
 
     steps:
@@ -43,14 +33,15 @@ jobs:
       - name: Reclaim the bytes
         uses: ./.github/actions/measurements
         with:
-          remove-dotnet: ${{ matrix.setting == 'dotnet' }}
-          remove-android: ${{ matrix.setting == 'android' }}
-          remove-haskell: ${{ matrix.setting == 'haskell' }}
+          remove-go: ${{ matrix.setting == 'go' }}
+          remove-python: ${{ matrix.setting == 'python' }}
           remove-codeql: ${{ matrix.setting == 'codeql' }}
+          remove-powershell: ${{ matrix.setting == 'powershell' }}
+          remove-android-sdk: ${{ matrix.setting == 'android-sdk' }}
+          remove-haskell-ghc: ${{ matrix.setting == 'haskell-ghc' }}
+          remove-swift: ${{ matrix.setting == 'swift' }}
+          remove-dotnet: ${{ matrix.setting == 'dotnet' }}
           remove-docker-images: ${{ matrix.setting == 'docker-images' }}
-          remove-swap: ${{ matrix.setting == 'swap' }}
-          remove-boost: ${{ matrix.setting == 'boost' }}
-          apt-clean: ${{ matrix.setting == 'apt-clean' }}
 
       - name: Record stopping conditions
         id: after
