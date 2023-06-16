@@ -4,10 +4,30 @@ branding:
   icon: 'crop'
   color: 'orange'
 inputs:
-  remove-packages:
-    description: 'Remove specified packages'
+  remove-dotnet:
+    description: 'Removes .NET runtime and libraries.'
     required: false
-    default: 'dotnet, android, haskell, codeql, docker-images'
+    default: 'true'
+  remove-android:
+    description: 'Removes Android SDKs and Tools.'
+    required: false
+    default: 'true'
+  remove-haskell:
+    description: 'Removes GHC (Haskell) artifacts.'
+    required: false
+    default: 'true'
+  remove-codeql:
+    description: 'Removes CodeQL Action Bundles.'
+    required: false
+    default: 'true'
+  remove-docker-images:
+    description: 'Removes cached Docker images.'
+    required: false
+    default: 'true'
+  remove-large-packages:
+    description: 'Removes large packages.'
+    required: false
+    default: 'false'
 runs:
   using: "composite"
   steps:
@@ -20,37 +40,37 @@ runs:
       run: |
         set -euo pipefail
 
-        echo "Arguments:"
+        if [[ ${{ inputs.remove-dotnet }} == 'true' ]]; then
+          echo "Removing dotnet"
+          sudo rm -rf /usr/share/dotnet
+        fi
 
-        IFS=',' read -ra PACKAGES <<< "${{ inputs.remove-packages }}"
-        for i in "${PACKAGES[@]}"; do
-          echo "Removing: $i"
-          case "$i" in
-            'dotnet')
-              sudo rm -rf /usr/share/dotnet
-              ;;
-            'android')
-              sudo rm -rf /usr/local/lib/android
-              ;;
-            'haskell')
-              sudo rm -rf /opt/ghc
-              ;;
-            'codeql')
-              sudo rm -rf /opt/hostedtoolcache/CodeQL
-              ;;
-            'docker-images')
-              sudo docker image prune --all --force
-              ;;
-            'large-packages')
-              sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
-              sudo apt-get autoremove -y
-              sudo apt-get clean
-              ;;
-            *)
-              echo "Invalid input: $i"
-              ;;
-          esac
-        done
+        if [[ ${{ inputs.remove-android }} == 'true' ]]; then
+          echo "Removing android"
+          sudo rm -rf /usr/local/lib/android
+        fi
+
+        if [[ ${{ inputs.remove-haskell }} == 'true' ]]; then
+          echo "Removing haskell"
+          sudo rm -rf /opt/ghc
+        fi
+
+        if [[ ${{ inputs.remove-codeql }} == 'true' ]]; then
+          echo "Removing codeql"
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+        fi
+
+        if [[ ${{ inputs.remove-docker-images }} == 'true' ]]; then
+          echo "Removing Docker images"
+          sudo docker image prune --all --force
+        fi
+
+        if [[ ${{ inputs.remove-large-packages }} == 'true' ]]; then
+          echo "Removing large Apt packages"
+          sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+        fi
 
     - name: Disk space report after modification
       shell: bash

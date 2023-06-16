@@ -17,7 +17,7 @@ jobs:
         os:
           - ubuntu-20.04
           - ubuntu-22.04
-        remove-packages:
+        to-remove:
           - dotnet
           - android
           - haskell
@@ -40,7 +40,12 @@ jobs:
       - name: Maximize build space
         uses: ./.github/actions/maximize-test
         with:
-          remove-packages: ${{ matrix.remove-packages }}
+          remove-dotnet: ${{ matrix.to-remove == 'dotnet' }}
+          remove-android: ${{ matrix.to-remove == 'android' }}
+          remove-haskell: ${{ matrix.to-remove == 'haskell' }}
+          remove-codeql: ${{ matrix.to-remove == 'codeql' }}
+          remove-docker-images: ${{ matrix.to-remove == 'docker-images' }}
+          remove-large-packages: ${{ matrix.to-remove == 'large-packages' }}
 
       - name: Record stopping conditions
         id: after
@@ -51,7 +56,7 @@ jobs:
       - name: Calculate freed space
         id: report
         run: |
-          OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.remove-packages}}.json"
+          OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.to-remove}}.json"
           echo "output_json=$OUTPUT_JSON" >> $GITHUB_OUTPUT
 
           DURATION=$((${{ steps.after.outputs.timestamp }} - ${{ steps.before.outputs.timestamp }}))
@@ -65,7 +70,7 @@ jobs:
           cat > "$OUTPUT_JSON" << HERE
             {
               "os":                    "${{ matrix.os }}",
-              "remove_packages":       "${{ matrix.remove-packages}}",
+              "to_remove":             "${{ matrix.to-remove}}",
               "space_free_before":     "${{ steps.before.outputs.disk_free }}",
               "space_free_after":      "${{ steps.after.outputs.disk_free }}",
               "space_freed":           "${FREED_DISK}",
