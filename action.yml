@@ -99,12 +99,7 @@ runs:
           sudo apt-get clean
         fi
 
-        # if [[ ${{ inputs.remove-large-packages }} == 'true' ]]; then
-        #   echo "Removing large Apt packages"
-        #   sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
-        #   sudo apt-get autoremove -y
-        #   sudo apt-get clean
-        # fi
+        # sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
 
     - name: Disk space report after modification
       shell: bash
