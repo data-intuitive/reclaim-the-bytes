@@ -26,10 +26,10 @@ jobs:
           - large-packages
 
     steps:
-      - name: Check out Maximize Build Space action
+      - name: Check out action
         uses: actions/checkout@v3
         with:
-          path: ./.github/actions/maximize-test
+          path: ./.github/actions/measurements
 
       - name: Record starting conditions
         id: before
@@ -37,8 +37,8 @@ jobs:
           echo "disk_free=$(df --output=avail --sync -BG "${{ github.workspace }}" | tail -1 | sed 's/[^0-9]*//g')" >> $GITHUB_OUTPUT
           printf 'timestamp=%(%s)T\n' >> "$GITHUB_OUTPUT"
 
-      - name: Maximize build space
-        uses: ./.github/actions/maximize-test
+      - name: Reclaim the bytes
+        uses: ./.github/actions/measurements
         with:
           remove-dotnet: ${{ matrix.to-remove == 'dotnet' }}
           remove-android: ${{ matrix.to-remove == 'android' }}
@@ -53,7 +53,7 @@ jobs:
           echo "disk_free=$(df --output=avail --sync -BG "${{ github.workspace }}" | tail -1 | sed 's/[^0-9]*//g')" >> $GITHUB_OUTPUT
           printf 'timestamp=%(%s)T\n' >> "$GITHUB_OUTPUT"
 
-      - name: Calculate freed space
+      - name: Create measurements json
         id: json
         run: |
           OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.to-remove}}.json"
