@@ -92,7 +92,7 @@ jobs:
 
     steps:
       - name: Download single jsons
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: output_json
           path: ${{ env.REPORT_DIR }}
