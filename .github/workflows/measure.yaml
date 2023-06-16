@@ -68,14 +68,14 @@ jobs:
           echo "Duration         : ${DURATION}s"
 
           cat > "$OUTPUT_JSON" << HERE
-            {
+            [{
               "os":                    "${{ matrix.os }}",
               "to_remove":             "${{ matrix.to-remove}}",
               "space_free_before":     "${{ steps.before.outputs.disk_free }}",
               "space_free_after":      "${{ steps.after.outputs.disk_free }}",
               "space_freed":           "${FREED_DISK}",
               "duration":              "${DURATION}"
-            }
+            }]
           HERE
 
       - name: Upload disk space report
