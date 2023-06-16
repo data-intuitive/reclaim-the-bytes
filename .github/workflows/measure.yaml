@@ -65,7 +65,7 @@ jobs:
           echo "Free space before: ${{ steps.before.outputs.disk_free }}G"
           echo "Free space after : ${{ steps.after.outputs.disk_free }}G"
           echo "Space freed      : ${FREED_DISK}G"
-          echo "Duration         : ${DURATION}"
+          echo "Duration         : ${DURATION}s"
 
           cat > "$OUTPUT_JSON" << HERE
             {
@@ -101,10 +101,13 @@ jobs:
       - name: Merge json files
         run: |
           tree "${{ env.REPORT_DIR }}"
+
           jq -s add ${{ env.REPORT_DIR }}/single_*.json > "${{ env.REPORT_DIR }}/merged.json"
+
+          tree "${{ env.REPORT_DIR }}"
 
       - name: Upload merged json
         uses: actions/upload-artifact@v3
         with:
           name: output
-          path: ${{ env.REPORT_DIR }}/merged.json"
+          path: "${{ env.REPORT_DIR }}/merged.json"
