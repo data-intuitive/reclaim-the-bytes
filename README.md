@@ -6,6 +6,10 @@ The inspiration for this action:
 
 - [easimon/maximize-build-space](https://github.com/easimon/maximize-build-space)
 - [ThewApp/free-actions](https://github.com/ThewApp/free-actions)
+- [Other GitHub
+  actions](https://github.com/search?q=%22rm+-rf+%2Fusr%2Fshare%2Fdotnet%22&type=code)
+- [This
+  discussion](https://github.com/actions/runner-images/discussions/3242)
 
 **Caveat:** Removal of unnecessary software is implemented by `rm -rf`
 on specific folders, not by using a package manager or anything
@@ -29,17 +33,21 @@ jobs:
       - name: Reclaim the bytes
         uses: data-intuitive/reclaim-the-bytes@v1
         with:
+          remove-hosted-tool-cache: true
+          remove-go: false
+          remove-codeql: false
+          remove-powershell: false
+          remove-android-sdk: true
+          remove-haskell-ghc: true
+          remove-swift: true
           remove-dotnet: true
-          remove-android: true
-          remove-haskell: true
-          remove-codeql: true
           remove-docker-images: true
-          remove-large-packages: false
+          remove-swap: true
 
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build
+      - name: Report free space
         run: |
           echo "Free space:"
           df -h
@@ -47,12 +55,27 @@ jobs:
 
 ## Inputs
 
-- `remove-dotnet`: Remove .NET runtime and libraries. Default: `true`.
-- `remove-android`: Remove Android SDKs and Tools. Default: `true`.
-- `remove-haskell`: Remove GHC (Haskell) artifacts. Default: `true`.
-- `remove-codeql`: Remove CodeQL Action Bundles. Default: `true`.
-- `remove-docker-images`: Remove cached Docker images. Default: `true`.
-- `remove-large-packages`: Remove large packages. Default: `false`.
+- `remove-hosted-tool-cache`: Remove the hosted tool cache, including
+  Go, CodeQL, Powershell. Execution time: 5s. Space freed: 10GB.
+  Default: `true`.
+- `remove-go`: Remove Go libraries. Execution time: 2s. Space freed:
+  1GB. Default: `false`.
+- `remove-codeql`: Remove CodeQL. Execution time: 1s. Space freed: 6GB.
+  Default: `false`.
+- `remove-powershell`: Remove PowerShell. Execution time: 1s. Space
+  freed: 1GB. Default: `false`.
+- `remove-android-sdk`: Remove Android SDK. Execution time: 35s. Space
+  freed: 12GB. Default: `true`.
+- `remove-haskell-ghc`: Remove Haskell GHC. Execution time: 3s. Space
+  freed: 5GB. Default: `true`.
+- `remove-swift`: Remove Swift. Execution time: 1s. Space freed: 2GB.
+  Default: `true`.
+- `remove-dotnet`: Remove .NET libraries. Execution time: 5s. Space
+  freed: 2GB. Default: `true`.
+- `remove-docker-images`: Remove cached Docker images. Execution time:
+  18s. Space freed: 5GB. Default: `true`.
+- `remove-swap`: Remove swap. Execution time: 1s. Space freed: 5GB on
+  /mnt. Default: `true`.
 
 ## Measurements
 
@@ -61,19 +84,29 @@ account whether the software is needed or not, but also how long it
 takes to remove vs. the amount of disk space removing it frees up. Here
 is a visualisation of that information.
 
-| Software       | OS           | Duration (s) | Space freed (GB) |
-|:---------------|:-------------|-------------:|-----------------:|
-| android        | ubuntu-20.04 |         34.8 |               12 |
-| android        | ubuntu-22.04 |         37.2 |               13 |
-| codeql         | ubuntu-20.04 |          1.0 |                6 |
-| codeql         | ubuntu-22.04 |          1.4 |                6 |
-| docker-images  | ubuntu-20.04 |         19.8 |                5 |
-| docker-images  | ubuntu-22.04 |         11.4 |                4 |
-| dotnet         | ubuntu-20.04 |          8.6 |                3 |
-| dotnet         | ubuntu-22.04 |          2.4 |                2 |
-| haskell        | ubuntu-20.04 |          0.4 |                0 |
-| haskell        | ubuntu-22.04 |          0.4 |                0 |
-| large-packages | ubuntu-20.04 |        174.2 |                6 |
-| large-packages | ubuntu-22.04 |        117.2 |                5 |
+| Software          | OS           | Duration (s) | Space freed (GB) |
+|:------------------|:-------------|-------------:|-----------------:|
+| android-sdk       | ubuntu-20.04 |         26.8 |               12 |
+| android-sdk       | ubuntu-22.04 |         37.0 |               13 |
+| codeql            | ubuntu-20.04 |          1.0 |                6 |
+| codeql            | ubuntu-22.04 |          1.0 |                6 |
+| docker-images     | ubuntu-20.04 |         18.4 |                5 |
+| docker-images     | ubuntu-22.04 |         17.0 |                4 |
+| dotnet            | ubuntu-20.04 |          5.6 |                3 |
+| dotnet            | ubuntu-22.04 |          2.2 |                2 |
+| go                | ubuntu-20.04 |          2.2 |                1 |
+| go                | ubuntu-22.04 |          1.2 |                2 |
+| haskell-ghc       | ubuntu-20.04 |          2.8 |                5 |
+| haskell-ghc       | ubuntu-22.04 |          3.4 |                5 |
+| hosted-tool-cache | ubuntu-20.04 |          5.0 |               10 |
+| hosted-tool-cache | ubuntu-22.04 |          3.4 |                9 |
+| powershell        | ubuntu-20.04 |          0.8 |                1 |
+| powershell        | ubuntu-22.04 |          0.6 |                2 |
+| python            | ubuntu-20.04 |          0.0 |                0 |
+| python            | ubuntu-22.04 |          0.4 |                0 |
+| swap              | ubuntu-20.04 |          0.0 |                0 |
+| swap              | ubuntu-22.04 |          0.0 |                0 |
+| swift             | ubuntu-20.04 |          0.6 |                2 |
+| swift             | ubuntu-22.04 |          0.4 |                2 |
 
 ![](resources/README_files/measurements-plot-1.png)

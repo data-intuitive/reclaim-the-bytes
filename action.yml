@@ -5,47 +5,43 @@ branding:
   color: 'orange'
 inputs:
   remove-hosted-tool-cache:
-    description: 'Remove the hosted tool cache, including Go, Python, CodeQL, Powershell. Default: `true`.'
+    description: 'Remove the hosted tool cache, including Go, CodeQL, Powershell. Execution time: 5s. Space freed: 10GB. Default: `true`.'
     required: false
     default: 'true'
   remove-go:
-    description: 'Remove Go libraries. Default: `false`.'
-    required: false
-    default: 'false'
-  remove-python:
-    description: 'Remove Python libraries. Default: `false`.'
+    description: 'Remove Go libraries. Execution time: 2s. Space freed: 1GB. Default: `false`.'
     required: false
     default: 'false'
   remove-codeql:
-    description: 'Remove CodeQL. Default: `false`.'
+    description: 'Remove CodeQL. Execution time: 1s. Space freed: 6GB. Default: `false`.'
     required: false
     default: 'false'
   remove-powershell:
-    description: 'Remove PowerShell. Default: `false`.'
+    description: 'Remove PowerShell. Execution time: 1s. Space freed: 1GB. Default: `false`.'
     required: false
     default: 'false'
   remove-android-sdk:
-    description: 'Remove Android SDK. Default: `true`.'
+    description: 'Remove Android SDK. Execution time: 35s. Space freed: 12GB. Default: `true`.'
     required: false
     default: 'true'
   remove-haskell-ghc:
-    description: 'Remove Haskell GHC. Default: `true`.'
+    description: 'Remove Haskell GHC. Execution time: 3s. Space freed: 5GB. Default: `true`.'
     required: false
     default: 'true'
   remove-swift:
-    description: 'Remove Swift. Default: `true`.'
+    description: 'Remove Swift. Execution time: 1s. Space freed: 2GB. Default: `true`.'
     required: false
     default: 'true'
   remove-dotnet:
-    description: 'Remove .NET. Default: `true`.'
+    description: 'Remove .NET libraries. Execution time: 5s. Space freed: 2GB. Default: `true`.'
     required: false
     default: 'true'
   remove-docker-images:
-    description: 'Remove cached Docker images. Default: `true`.'
+    description: 'Remove cached Docker images. Execution time: 18s. Space freed: 5GB. Default: `true`.'
     required: false
     default: 'true'
   remove-swap:
-    description: 'Remove swap. Default: `true`.'
+    description: 'Remove swap. Execution time: 1s. Space freed: 5GB on /mnt. Default: `true`.'
     required: false
     default: 'true'
 runs:
@@ -66,12 +62,6 @@ runs:
       if: inputs.remove-go == 'true'
       run: |
         sudo rm -rf /opt/hostedtoolcache/go
-
-    - name: Remove Python
-      shell: bash
-      if: inputs.remove-python == 'true'
-      run: |
-        sudo rm -rf /opt/hostedtoolcache/python
 
     - name: Remove CodeQL
       shell: bash

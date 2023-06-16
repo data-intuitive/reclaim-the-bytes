@@ -14,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        setting: [hosted-tool-cache, go, codeql, powershell, android-sdk, haskell-ghc, swift, dotnet, docker-images, swap]
         os: [ubuntu-20.04, ubuntu-22.04]
-        setting: [hosted-tool-cache, go, python, codeql, powershell, android-sdk, haskell-ghc, swift, dotnet, docker-images, swap]
         run: [1, 2, 3, 4, 5]
 
     steps:
@@ -35,7 +35,6 @@ jobs:
         with:
           remove-hosted-tool-cache: ${{ matrix.setting == 'hosted-tool-cache' }}
           remove-go: ${{ matrix.setting == 'go' }}
-          remove-python: ${{ matrix.setting == 'python' }}
           remove-codeql: ${{ matrix.setting == 'codeql' }}
           remove-powershell: ${{ matrix.setting == 'powershell' }}
           remove-android-sdk: ${{ matrix.setting == 'android-sdk' }}

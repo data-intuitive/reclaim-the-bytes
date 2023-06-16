@@ -1,35 +1,26 @@
 [
   {
     "os": "ubuntu-20.04",
-    "to_remove": "android",
+    "to_remove": "android-sdk",
     "run": 1,
     "free_before_gb": 22,
     "free_after_gb": 34,
     "freed_gb": 12,
-    "duration_s": 13
+    "duration_s": 59
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "android",
+    "to_remove": "android-sdk",
     "run": 2,
     "free_before_gb": 22,
     "free_after_gb": 34,
     "freed_gb": 12,
-    "duration_s": 14
+    "duration_s": 7
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "android",
+    "to_remove": "android-sdk",
     "run": 3,
-    "free_before_gb": 22,
-    "free_after_gb": 34,
-    "freed_gb": 12,
-    "duration_s": 66
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "android",
-    "run": 4,
     "free_before_gb": 22,
     "free_after_gb": 34,
     "freed_gb": 12,
@@ -37,381 +28,615 @@
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "android",
+    "to_remove": "android-sdk",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 34,
+    "freed_gb": 12,
+    "duration_s": 47
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "android-sdk",
     "run": 5,
     "free_before_gb": 22,
     "free_after_gb": 34,
     "freed_gb": 12,
-    "duration_s": 71
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "codeql",
-    "run": 1,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "codeql",
-    "run": 2,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "codeql",
-    "run": 3,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "codeql",
-    "run": 4,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "codeql",
-    "run": 5,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "docker-images",
-    "run": 1,
-    "free_before_gb": 22,
-    "free_after_gb": 27,
-    "freed_gb": 5,
-    "duration_s": 21
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "docker-images",
-    "run": 2,
-    "free_before_gb": 22,
-    "free_after_gb": 27,
-    "freed_gb": 5,
-    "duration_s": 24
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "docker-images",
-    "run": 3,
-    "free_before_gb": 22,
-    "free_after_gb": 27,
-    "freed_gb": 5,
-    "duration_s": 19
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "docker-images",
-    "run": 4,
-    "free_before_gb": 22,
-    "free_after_gb": 27,
-    "freed_gb": 5,
-    "duration_s": 17
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "docker-images",
-    "run": 5,
-    "free_before_gb": 22,
-    "free_after_gb": 27,
-    "freed_gb": 5,
-    "duration_s": 18
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "dotnet",
-    "run": 1,
-    "free_before_gb": 22,
-    "free_after_gb": 25,
-    "freed_gb": 3,
-    "duration_s": 6
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "dotnet",
-    "run": 2,
-    "free_before_gb": 22,
-    "free_after_gb": 25,
-    "freed_gb": 3,
     "duration_s": 11
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "dotnet",
-    "run": 3,
+    "to_remove": "codeql",
+    "run": 1,
     "free_before_gb": 22,
-    "free_after_gb": 25,
-    "freed_gb": 3,
+    "free_after_gb": 28,
+    "freed_gb": 6,
     "duration_s": 1
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "dotnet",
-    "run": 4,
+    "to_remove": "codeql",
+    "run": 2,
     "free_before_gb": 22,
-    "free_after_gb": 25,
-    "freed_gb": 3,
-    "duration_s": 2
+    "free_after_gb": 28,
+    "freed_gb": 6,
+    "duration_s": 1
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "dotnet",
+    "to_remove": "codeql",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 28,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "codeql",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 28,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "codeql",
     "run": 5,
     "free_before_gb": 22,
-    "free_after_gb": 25,
-    "freed_gb": 3,
+    "free_after_gb": 28,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "docker-images",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 16
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "docker-images",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
     "duration_s": 23
   },
   {
     "os": "ubuntu-20.04",
-    "to_remove": "haskell",
-    "run": 1,
-    "free_before_gb": 22,
-    "free_after_gb": 22,
-    "freed_gb": 0,
-    "duration_s": 0
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "haskell",
-    "run": 2,
-    "free_before_gb": 22,
-    "free_after_gb": 22,
-    "freed_gb": 0,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "haskell",
-    "run": 3,
-    "free_before_gb": 22,
-    "free_after_gb": 22,
-    "freed_gb": 0,
-    "duration_s": 0
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "haskell",
-    "run": 4,
-    "free_before_gb": 22,
-    "free_after_gb": 22,
-    "freed_gb": 0,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "haskell",
-    "run": 5,
-    "free_before_gb": 22,
-    "free_after_gb": 22,
-    "freed_gb": 0,
-    "duration_s": 0
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "large-packages",
-    "run": 1,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 155
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "large-packages",
-    "run": 2,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 158
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "large-packages",
-    "run": 3,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 217
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "large-packages",
-    "run": 4,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 167
-  },
-  {
-    "os": "ubuntu-20.04",
-    "to_remove": "large-packages",
-    "run": 5,
-    "free_before_gb": 22,
-    "free_after_gb": 28,
-    "freed_gb": 6,
-    "duration_s": 174
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "android",
-    "run": 1,
-    "free_before_gb": 26,
-    "free_after_gb": 39,
-    "freed_gb": 13,
-    "duration_s": 6
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "android",
-    "run": 2,
-    "free_before_gb": 26,
-    "free_after_gb": 39,
-    "freed_gb": 13,
-    "duration_s": 50
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "android",
-    "run": 3,
-    "free_before_gb": 26,
-    "free_after_gb": 39,
-    "freed_gb": 13,
-    "duration_s": 72
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "android",
-    "run": 4,
-    "free_before_gb": 26,
-    "free_after_gb": 39,
-    "freed_gb": 13,
-    "duration_s": 49
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "android",
-    "run": 5,
-    "free_before_gb": 26,
-    "free_after_gb": 39,
-    "freed_gb": 13,
-    "duration_s": 9
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "codeql",
-    "run": 1,
-    "free_before_gb": 26,
-    "free_after_gb": 32,
-    "freed_gb": 6,
-    "duration_s": 2
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "codeql",
-    "run": 2,
-    "free_before_gb": 26,
-    "free_after_gb": 32,
-    "freed_gb": 6,
-    "duration_s": 2
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "codeql",
-    "run": 3,
-    "free_before_gb": 26,
-    "free_after_gb": 32,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "codeql",
-    "run": 4,
-    "free_before_gb": 26,
-    "free_after_gb": 32,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "codeql",
-    "run": 5,
-    "free_before_gb": 26,
-    "free_after_gb": 32,
-    "freed_gb": 6,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-22.04",
     "to_remove": "docker-images",
-    "run": 1,
-    "free_before_gb": 26,
-    "free_after_gb": 30,
-    "freed_gb": 4,
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
     "duration_s": 15
   },
   {
-    "os": "ubuntu-22.04",
-    "to_remove": "docker-images",
-    "run": 2,
-    "free_before_gb": 26,
-    "free_after_gb": 30,
-    "freed_gb": 4,
-    "duration_s": 4
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "docker-images",
-    "run": 3,
-    "free_before_gb": 26,
-    "free_after_gb": 30,
-    "freed_gb": 4,
-    "duration_s": 4
-  },
-  {
-    "os": "ubuntu-22.04",
+    "os": "ubuntu-20.04",
     "to_remove": "docker-images",
     "run": 4,
-    "free_before_gb": 26,
-    "free_after_gb": 30,
-    "freed_gb": 4,
-    "duration_s": 15
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "docker-images",
-    "run": 5,
-    "free_before_gb": 26,
-    "free_after_gb": 30,
-    "freed_gb": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
     "duration_s": 19
   },
   {
+    "os": "ubuntu-20.04",
+    "to_remove": "docker-images",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 19
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "dotnet",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 25,
+    "freed_gb": 3,
+    "duration_s": 7
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "dotnet",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 25,
+    "freed_gb": 3,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "dotnet",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 25,
+    "freed_gb": 3,
+    "duration_s": 12
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "dotnet",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 25,
+    "freed_gb": 3,
+    "duration_s": 6
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "dotnet",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 25,
+    "freed_gb": 3,
+    "duration_s": 2
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "go",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "go",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "go",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "go",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "go",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "haskell-ghc",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 4
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "haskell-ghc",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "haskell-ghc",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 2
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "haskell-ghc",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 2
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "haskell-ghc",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 27,
+    "freed_gb": 5,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 32,
+    "freed_gb": 10,
+    "duration_s": 5
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 32,
+    "freed_gb": 10,
+    "duration_s": 4
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 32,
+    "freed_gb": 10,
+    "duration_s": 6
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 32,
+    "freed_gb": 10,
+    "duration_s": 5
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 32,
+    "freed_gb": 10,
+    "duration_s": 5
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "powershell",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "powershell",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "powershell",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "powershell",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "powershell",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 23,
+    "freed_gb": 1,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "python",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "python",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "python",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "python",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "python",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swap",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swap",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swap",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swap",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swap",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 22,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swift",
+    "run": 1,
+    "free_before_gb": 22,
+    "free_after_gb": 24,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swift",
+    "run": 2,
+    "free_before_gb": 22,
+    "free_after_gb": 24,
+    "freed_gb": 2,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swift",
+    "run": 3,
+    "free_before_gb": 22,
+    "free_after_gb": 24,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swift",
+    "run": 4,
+    "free_before_gb": 22,
+    "free_after_gb": 24,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-20.04",
+    "to_remove": "swift",
+    "run": 5,
+    "free_before_gb": 22,
+    "free_after_gb": 24,
+    "freed_gb": 2,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "android-sdk",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 39,
+    "freed_gb": 13,
+    "duration_s": 47
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "android-sdk",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 39,
+    "freed_gb": 13,
+    "duration_s": 10
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "android-sdk",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 39,
+    "freed_gb": 13,
+    "duration_s": 39
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "android-sdk",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 39,
+    "freed_gb": 13,
+    "duration_s": 52
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "android-sdk",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 39,
+    "freed_gb": 13,
+    "duration_s": 37
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "codeql",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 32,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "codeql",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 32,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "codeql",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 32,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "codeql",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 32,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "codeql",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 32,
+    "freed_gb": 6,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "docker-images",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 30,
+    "freed_gb": 4,
+    "duration_s": 20
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "docker-images",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 30,
+    "freed_gb": 4,
+    "duration_s": 17
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "docker-images",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 30,
+    "freed_gb": 4,
+    "duration_s": 15
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "docker-images",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 30,
+    "freed_gb": 4,
+    "duration_s": 21
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "docker-images",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 30,
+    "freed_gb": 4,
+    "duration_s": 12
+  },
+  {
     "os": "ubuntu-22.04",
     "to_remove": "dotnet",
     "run": 1,
     "free_before_gb": 26,
     "free_after_gb": 28,
     "freed_gb": 2,
-    "duration_s": 3
+    "duration_s": 1
   },
   {
     "os": "ubuntu-22.04",
@@ -420,7 +645,7 @@
     "free_before_gb": 26,
     "free_after_gb": 28,
     "freed_gb": 2,
-    "duration_s": 3
+    "duration_s": 1
   },
   {
     "os": "ubuntu-22.04",
@@ -429,12 +654,165 @@
     "free_before_gb": 26,
     "free_after_gb": 28,
     "freed_gb": 2,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "dotnet",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "dotnet",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "go",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "go",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 2
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "go",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "go",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "go",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "haskell-ghc",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 31,
+    "freed_gb": 5,
+    "duration_s": 2
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "haskell-ghc",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 31,
+    "freed_gb": 5,
     "duration_s": 4
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "dotnet",
+    "to_remove": "haskell-ghc",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 31,
+    "freed_gb": 5,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "haskell-ghc",
     "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 31,
+    "freed_gb": 5,
+    "duration_s": 4
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "haskell-ghc",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 31,
+    "freed_gb": 5,
+    "duration_s": 4
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 35,
+    "freed_gb": 9,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 35,
+    "freed_gb": 9,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 35,
+    "freed_gb": 9,
+    "duration_s": 3
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 35,
+    "freed_gb": 9,
+    "duration_s": 4
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "hosted-tool-cache",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 35,
+    "freed_gb": 9,
+    "duration_s": 4
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "powershell",
+    "run": 1,
     "free_before_gb": 26,
     "free_after_gb": 28,
     "freed_gb": 2,
@@ -442,7 +820,34 @@
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "dotnet",
+    "to_remove": "powershell",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "powershell",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "powershell",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "powershell",
     "run": 5,
     "free_before_gb": 26,
     "free_after_gb": 28,
@@ -451,7 +856,7 @@
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "haskell",
+    "to_remove": "python",
     "run": 1,
     "free_before_gb": 26,
     "free_after_gb": 26,
@@ -460,7 +865,7 @@
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "haskell",
+    "to_remove": "python",
     "run": 2,
     "free_before_gb": 26,
     "free_after_gb": 26,
@@ -469,17 +874,8 @@
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "haskell",
+    "to_remove": "python",
     "run": 3,
-    "free_before_gb": 26,
-    "free_after_gb": 26,
-    "freed_gb": 0,
-    "duration_s": 1
-  },
-  {
-    "os": "ubuntu-22.04",
-    "to_remove": "haskell",
-    "run": 4,
     "free_before_gb": 26,
     "free_after_gb": 26,
     "freed_gb": 0,
@@ -487,7 +883,16 @@
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "haskell",
+    "to_remove": "python",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 26,
+    "freed_gb": 0,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "python",
     "run": 5,
     "free_before_gb": 26,
     "free_after_gb": 26,
@@ -496,47 +901,92 @@
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "large-packages",
+    "to_remove": "swap",
     "run": 1,
     "free_before_gb": 26,
-    "free_after_gb": 31,
-    "freed_gb": 5,
-    "duration_s": 131
+    "free_after_gb": 26,
+    "freed_gb": 0,
+    "duration_s": 0
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "large-packages",
+    "to_remove": "swap",
     "run": 2,
     "free_before_gb": 26,
-    "free_after_gb": 31,
-    "freed_gb": 5,
-    "duration_s": 99
+    "free_after_gb": 26,
+    "freed_gb": 0,
+    "duration_s": 0
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "large-packages",
+    "to_remove": "swap",
     "run": 3,
     "free_before_gb": 26,
-    "free_after_gb": 31,
-    "freed_gb": 5,
-    "duration_s": 131
+    "free_after_gb": 26,
+    "freed_gb": 0,
+    "duration_s": 0
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "large-packages",
+    "to_remove": "swap",
     "run": 4,
     "free_before_gb": 26,
-    "free_after_gb": 31,
-    "freed_gb": 5,
-    "duration_s": 94
+    "free_after_gb": 26,
+    "freed_gb": 0,
+    "duration_s": 0
   },
   {
     "os": "ubuntu-22.04",
-    "to_remove": "large-packages",
+    "to_remove": "swap",
     "run": 5,
     "free_before_gb": 26,
-    "free_after_gb": 31,
-    "freed_gb": 5,
-    "duration_s": 131
+    "free_after_gb": 26,
+    "freed_gb": 0,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "swift",
+    "run": 1,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "swift",
+    "run": 2,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "swift",
+    "run": 3,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 0
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "swift",
+    "run": 4,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 1
+  },
+  {
+    "os": "ubuntu-22.04",
+    "to_remove": "swift",
+    "run": 5,
+    "free_before_gb": 26,
+    "free_after_gb": 28,
+    "freed_gb": 2,
+    "duration_s": 0
   }
 ]
