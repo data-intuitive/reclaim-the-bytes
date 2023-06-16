@@ -119,8 +119,9 @@ runs:
       shell: bash
       if: inputs.remove-swap == 'true'
       run: |
-        sudo swapoff -a
-        sudo rm -f /mnt/swapfile
+        export SWAP_FILE=$(swapon --show=NAME | tail -n 1)
+        sudo swapoff $SWAP_FILE
+        sudo rm $SWAP_FILE
 
     - name: Disk space report after modification
       shell: bash
