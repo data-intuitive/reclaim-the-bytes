@@ -24,10 +24,18 @@ inputs:
     description: 'Remove cached Docker images. Default: `true`.'
     required: false
     default: 'true'
-  remove-large-packages:
-    description: 'Remove large packages. Default: `false`.'
+  remove-swap:
+    description: 'Remove swap. Default: `true`.'
     required: false
-    default: 'false'
+    default: 'true'
+  remove-boost:
+    description: 'Remove boost. Default: `true`.'
+    required: false
+    default: 'true'
+  apt-clean:
+    description: 'Run apt-get clean. Default: `true`.'
+    required: false
+    default: 'true'
 runs:
   using: "composite"
   steps:
@@ -42,11 +50,14 @@ runs:
 
         if [[ ${{ inputs.remove-dotnet }} == 'true' ]]; then
           echo "Removing dotnet"
-          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/share/dotnet/shared/
+          sudo rm -rf /usr/share/dotnet/host/
+          sudo rm -rf /usr/share/dotnet/sdk/
         fi
 
         if [[ ${{ inputs.remove-android }} == 'true' ]]; then
           echo "Removing android"
+          sudo rm -rf "$ANDROID_SDK_ROOT"
           sudo rm -rf /usr/local/lib/android
         fi
 
@@ -65,12 +76,35 @@ runs:
           sudo docker image prune --all --force
         fi
 
-        if [[ ${{ inputs.remove-large-packages }} == 'true' ]]; then
-          echo "Removing large Apt packages"
-          sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
-          sudo apt-get autoremove -y
+        if [[ ${{ inputs.remove-swap }} == 'true' ]]; then
+          echo "Removing swap"
+          sudo swapoff -a
+          sudo rm -f /swapfile
+        fi
+
+        if [[ ${{ inputs.remove-boost }} == 'true' ]]; then
+          echo "Removing boost"
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+        fi
+
+        if [[ ${{ inputs.remove-swift }} == 'true' ]]; then
+          echo "Removing swift"
+          sudo rm -rf "$SWIFT_PATH"
+          sudo rm -rf /usr/share/swift
+        fi
+
+        if [[ ${{ inputs.apt-clean }} == 'true' ]]; then
+          echo "Run apt-get clean"
           sudo apt-get clean
         fi
+
+        # if [[ ${{ inputs.remove-large-packages }} == 'true' ]]; then
+        #   echo "Removing large Apt packages"
+        #   sudo apt-get purge -y '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell microsoft-edge-stable mono-devel
+        #   sudo apt-get autoremove -y
+        #   sudo apt-get clean
+        # fi
 
     - name: Disk space report after modification
       shell: bash

@@ -17,13 +17,15 @@ jobs:
         os:
           - ubuntu-20.04
           - ubuntu-22.04
-        to-remove:
+        setting:
           - dotnet
           - android
           - haskell
           - codeql
           - docker-images
-          - large-packages
+          - swap
+          - boost
+          - apt-clean
         run: [1, 2, 3, 4, 5]
 
     steps:
@@ -41,12 +43,14 @@ jobs:
       - name: Reclaim the bytes
         uses: ./.github/actions/measurements
         with:
-          remove-dotnet: ${{ matrix.to-remove == 'dotnet' }}
-          remove-android: ${{ matrix.to-remove == 'android' }}
-          remove-haskell: ${{ matrix.to-remove == 'haskell' }}
-          remove-codeql: ${{ matrix.to-remove == 'codeql' }}
-          remove-docker-images: ${{ matrix.to-remove == 'docker-images' }}
-          remove-large-packages: ${{ matrix.to-remove == 'large-packages' }}
+          remove-dotnet: ${{ matrix.setting == 'dotnet' }}
+          remove-android: ${{ matrix.setting == 'android' }}
+          remove-haskell: ${{ matrix.setting == 'haskell' }}
+          remove-codeql: ${{ matrix.setting == 'codeql' }}
+          remove-docker-images: ${{ matrix.setting == 'docker-images' }}
+          remove-swap: ${{ matrix.setting == 'swap' }}
+          remove-boost: ${{ matrix.setting == 'boost' }}
+          apt-clean: ${{ matrix.setting == 'apt-clean' }}
 
       - name: Record stopping conditions
         id: after
@@ -57,7 +61,7 @@ jobs:
       - name: Create measurements json
         id: json
         run: |
-          OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.to-remove}}_${{matrix.run}}.json"
+          OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.setting}}_${{matrix.run}}.json"
           echo "output=$OUTPUT_JSON" >> $GITHUB_OUTPUT
 
           DURATION=$((${{ steps.after.outputs.timestamp }} - ${{ steps.before.outputs.timestamp }}))
@@ -71,7 +75,7 @@ jobs:
           cat > "$OUTPUT_JSON" << HERE
           [{
             "os": "${{ matrix.os }}",
-            "to_remove": "${{ matrix.to-remove}}",
+            "to_remove": "${{ matrix.setting}}",
             "run": ${{ matrix.run}},
             "free_before_gb": ${{ steps.before.outputs.disk_free }},
             "free_after_gb": ${{ steps.after.outputs.disk_free }},
