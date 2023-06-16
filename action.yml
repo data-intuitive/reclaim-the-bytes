@@ -7,7 +7,7 @@ inputs:
   remove-packages:
     description: 'Remove specified packages'
     required: false
-    default: 'dotnet, android, haskell, codeql, docker-images, large-packages'
+    default: 'dotnet, android, haskell, codeql, docker-images'
 runs:
   using: "composite"
   steps:
