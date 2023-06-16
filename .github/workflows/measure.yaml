@@ -54,10 +54,10 @@ jobs:
           printf 'timestamp=%(%s)T\n' >> "$GITHUB_OUTPUT"
 
       - name: Calculate freed space
-        id: report
+        id: json
         run: |
           OUTPUT_JSON="/tmp/single_${{matrix.os}}_${{matrix.to-remove}}.json"
-          echo "output_json=$OUTPUT_JSON" >> $GITHUB_OUTPUT
+          echo "output=$OUTPUT_JSON" >> $GITHUB_OUTPUT
 
           DURATION=$((${{ steps.after.outputs.timestamp }} - ${{ steps.before.outputs.timestamp }}))
           FREED_DISK=$((${{ steps.after.outputs.disk_free }} - ${{ steps.before.outputs.disk_free }}))
@@ -81,33 +81,33 @@ jobs:
       - name: Upload disk space report
         uses: actions/upload-artifact@v3
         with:
-          name: output_jsons
-          path: ${{ steps.report.outputs.output_json }}
+          name: measurement_jsons
+          path: ${{ steps.json.outputs.output }}
 
   collect-jsons:
     name: Collect jsons
     runs-on: ubuntu-latest
     needs: measure
     env:
-      REPORT_DIR: /tmp/report
+      JSON_DIR: /tmp/jsons
 
     steps:
       - name: Download single jsons
         uses: actions/download-artifact@v3
         with:
-          name: output_jsons
-          path: ${{ env.REPORT_DIR }}
+          name: measurement_jsons
+          path: ${{ env.JSON_DIR }}
 
       - name: Merge json files
         run: |
-          tree "${{ env.REPORT_DIR }}"
+          tree "${{ env.JSON_DIR }}"
 
-          jq -s add ${{ env.REPORT_DIR }}/single_*.json > "${{ env.REPORT_DIR }}/merged.json"
+          jq -s add ${{ env.JSON_DIR }}/single_*.json > "${{ env.JSON_DIR }}/measurements.json"
 
-          tree "${{ env.REPORT_DIR }}"
+          tree "${{ env.JSON_DIR }}"
 
       - name: Upload merged json
         uses: actions/upload-artifact@v3
         with:
           name: output
-          path: "${{ env.REPORT_DIR }}/merged.json"
+          path: "${{ env.JSON_DIR }}/measurements.json"
