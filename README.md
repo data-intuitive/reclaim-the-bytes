@@ -1,16 +1,23 @@
 # Reclaim The Bytes
 
-This action removes unused software to reclaim disk space.
+Remove unused software to reclaim disk space.
 
-This action is inspired by:
-  - [easimon/maximize-build-space](https://github.com/easimon/maximize-build-space)
-  - [ThewApp/free-actions](https://github.com/ThewApp/free-actions)
+The inspiration for this action:
 
-**Caveat:** Removal of unnecessary software is implemented by `rm -rf` on specific folders, not by using a package manager or anything sophisticated. While this is quick and easy, it might delete dependencies that are required by your job and so break your build (e.g. because your build job uses a .NET based tool and you removed the required runtime). Please verify which software may or may not be removed for your specific use case.
+- [easimon/maximize-build-space](https://github.com/easimon/maximize-build-space)
+- [ThewApp/free-actions](https://github.com/ThewApp/free-actions)
+
+**Caveat:** Removal of unnecessary software is implemented by `rm -rf`
+on specific folders, not by using a package manager or anything
+sophisticated. While this is quick and easy, it might delete
+dependencies that are required by your job and so break your build
+(e.g. because your build job uses a .NET based tool and you removed the
+required runtime). Please verify which software may or may not be
+removed for your specific use case.
 
 ## Usage
 
-```yaml
+``` yaml
 name: My build action requiring more space
 on: push
 
@@ -33,4 +40,9 @@ jobs:
 
 ## Inputs
 
-TODO
+- `remove-dotnet`: Remove .NET runtime and libraries. Default: `true`.
+- `remove-android`: Remove Android SDKs and Tools. Default: `true`.
+- `remove-haskell`: Remove GHC (Haskell) artifacts. Default: `true`.
+- `remove-codeql`: Remove CodeQL Action Bundles. Default: `true`.
+- `remove-docker-images`: Remove cached Docker images. Default: `true`.
+- `remove-large-packages`: Remove large packages. Default: `false`.

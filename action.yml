@@ -1,31 +1,31 @@
-name: 'Reclaim the bytes'
-description: 'Maximize the available disk space for your build job'
+name: 'Reclaim The Bytes'
+description: 'Remove unused software to reclaim disk space.'
 branding:
   icon: 'crop'
   color: 'orange'
 inputs:
   remove-dotnet:
-    description: 'Removes .NET runtime and libraries.'
+    description: 'Remove .NET runtime and libraries. Default: `true`.'
     required: false
     default: 'true'
   remove-android:
-    description: 'Removes Android SDKs and Tools.'
+    description: 'Remove Android SDKs and Tools. Default: `true`.'
     required: false
     default: 'true'
   remove-haskell:
-    description: 'Removes GHC (Haskell) artifacts.'
+    description: 'Remove GHC (Haskell) artifacts. Default: `true`.'
     required: false
     default: 'true'
   remove-codeql:
-    description: 'Removes CodeQL Action Bundles.'
+    description: 'Remove CodeQL Action Bundles. Default: `true`.'
     required: false
     default: 'true'
   remove-docker-images:
-    description: 'Removes cached Docker images.'
+    description: 'Remove cached Docker images. Default: `true`.'
     required: false
     default: 'true'
   remove-large-packages:
-    description: 'Removes large packages.'
+    description: 'Remove large packages. Default: `false`.'
     required: false
     default: 'false'
 runs:
