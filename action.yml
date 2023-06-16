@@ -4,22 +4,26 @@ branding:
   icon: 'crop'
   color: 'orange'
 inputs:
+  remove-hosted-tool-cache:
+    description: 'Remove the hosted tool cache, including Go, Python, CodeQL, Powershell. Default: `true`.'
+    required: false
+    default: 'true'
   remove-go:
-    description: 'Remove Go libraries. Default: `true`.'
+    description: 'Remove Go libraries. Default: `false`.'
     required: false
-    default: 'true'
+    default: 'false'
   remove-python:
-    description: 'Remove Python libraries. Default: `true`.'
+    description: 'Remove Python libraries. Default: `false`.'
     required: false
-    default: 'true'
+    default: 'false'
   remove-codeql:
-    description: 'Remove CodeQL. Default: `true`.'
+    description: 'Remove CodeQL. Default: `false`.'
     required: false
-    default: 'true'
+    default: 'false'
   remove-powershell:
-    description: 'Remove PowerShell. Default: `true`.'
+    description: 'Remove PowerShell. Default: `false`.'
     required: false
-    default: 'true'
+    default: 'false'
   remove-android-sdk:
     description: 'Remove Android SDK. Default: `true`.'
     required: false
@@ -40,12 +44,22 @@ inputs:
     description: 'Remove cached Docker images. Default: `true`.'
     required: false
     default: 'true'
+  remove-swap:
+    description: 'Remove swap. Default: `true`.'
+    required: false
+    default: 'true'
 runs:
   using: "composite"
   steps:
     - name: Disk space report before modification
       shell: bash
       run: df -h
+
+    - name: Remove Hosted Tool Cache
+      shell: bash
+      if: inputs.remove-hosted-tool-cache == 'true'
+      run: |
+        sudo rm -rf /opt/hostedtoolcache
 
     - name: Remove Go
       shell: bash
@@ -100,6 +114,13 @@ runs:
       if: inputs.remove-docker-images == 'true'
       run: |
         sudo docker image prune --all --force
+
+    - name: Remove Swap
+      shell: bash
+      if: inputs.remove-swap == 'true'
+      run: |
+        sudo swapoff -a
+        sudo rm -f /mnt/swapfile
 
     - name: Disk space report after modification
       shell: bash

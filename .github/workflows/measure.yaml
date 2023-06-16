@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04]
-        setting: [go, python, codeql, powershell, android-sdk, haskell-ghc, swift, dotnet, docker-images]
+        setting: [hosted-tool-cache, go, python, codeql, powershell, android-sdk, haskell-ghc, swift, dotnet, docker-images, swap]
         run: [1, 2, 3, 4, 5]
 
     steps:
@@ -33,6 +33,7 @@ jobs:
       - name: Reclaim the bytes
         uses: ./.github/actions/measurements
         with:
+          remove-hosted-tool-cache: ${{ matrix.setting == 'hosted-tool-cache' }}
           remove-go: ${{ matrix.setting == 'go' }}
           remove-python: ${{ matrix.setting == 'python' }}
           remove-codeql: ${{ matrix.setting == 'codeql' }}
@@ -42,6 +43,7 @@ jobs:
           remove-swift: ${{ matrix.setting == 'swift' }}
           remove-dotnet: ${{ matrix.setting == 'dotnet' }}
           remove-docker-images: ${{ matrix.setting == 'docker-images' }}
+          remove-swap: ${{ matrix.setting == 'swap' }}
 
       - name: Record stopping conditions
         id: after
