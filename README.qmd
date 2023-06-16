@@ -6,6 +6,8 @@ format: gfm
 
 ```{r}
 #| include: false
+knitr::opts_chunk$set(fig.path = "resources/README_files/")
+
 library(tidyverse)
 action <- yaml::read_yaml("action.yml")
 ```
@@ -52,4 +54,51 @@ lines <- map_chr(names(action$inputs), function(name) {
   glue::glue("* `{name}`: {input$description}")
 })
 knitr::asis_output(paste0(lines, collapse = "\n"))
+```
+
+## Measurements
+
+In deciding which software to remove, you do not only need to take into account whether the software is needed or not, but also how long it takes to remove vs. the amount of disk space removing it frees up. Here is a visualisation of that information.
+
+```{r}
+#| echo: false
+json_file <- "resources/measurements.json"
+
+if (!file.exists(json_file)) {
+  # download latest artifact
+  zip_file <- tempfile(fileext = ".zip")
+  download.file("https://nightly.link/data-intuitive/reclaim-the-bytes/workflows/measure.yaml/main/output.zip", zip_file)
+  unzip(zip_file, exdir = "resources")
+}
+
+# read json
+df <- jsonlite::read_json(json_file, simplifyVector = TRUE)
+
+summdf <- df %>%
+  group_by(software = to_remove, os) %>%
+  summarise_at(c("duration_s", "freed_gb"), mean) %>%
+  ungroup()
+```
+
+```{r}
+#| echo: false
+knitr::kable(summdf, col.names = c("Software", "OS", "Duration (s)", "Space freed (GB)"))
+```
+
+```{r measurements-plot}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 4
+bind_rows(
+  summdf %>% mutate(mean = TRUE),
+  df %>% mutate(mean = FALSE)
+) %>%
+  ggplot() +
+  geom_point(aes(duration_s, freed_gb, alpha = mean, size = mean)) +
+  ggrepel::geom_text_repel(aes(duration_s, freed_gb, label = software), summdf) +
+  theme_bw() +
+  labs(x = "Duration (s)", y = "GB freed", alpha = "Is mean", size = "Is mean") +
+  scale_alpha_manual(values = c("TRUE" = 1, "FALSE" = .2)) +
+  scale_size_manual(values = c("TRUE" = 3, "FALSE" = 1)) +
+  facet_wrap(~os)
 ```

@@ -46,3 +46,27 @@ jobs:
 - `remove-codeql`: Remove CodeQL Action Bundles. Default: `true`.
 - `remove-docker-images`: Remove cached Docker images. Default: `true`.
 - `remove-large-packages`: Remove large packages. Default: `false`.
+
+## Measurements
+
+In deciding which software to remove, you do not only need to take into
+account whether the software is needed or not, but also how long it
+takes to remove vs. the amount of disk space removing it frees up. Here
+is a visualisation of that information.
+
+| Software       | OS           | Duration (s) | Space freed (GB) |
+|:---------------|:-------------|-------------:|-----------------:|
+| android        | ubuntu-20.04 |         34.8 |               12 |
+| android        | ubuntu-22.04 |         37.2 |               13 |
+| codeql         | ubuntu-20.04 |          1.0 |                6 |
+| codeql         | ubuntu-22.04 |          1.4 |                6 |
+| docker-images  | ubuntu-20.04 |         19.8 |                5 |
+| docker-images  | ubuntu-22.04 |         11.4 |                4 |
+| dotnet         | ubuntu-20.04 |          8.6 |                3 |
+| dotnet         | ubuntu-22.04 |          2.4 |                2 |
+| haskell        | ubuntu-20.04 |          0.4 |                0 |
+| haskell        | ubuntu-22.04 |          0.4 |                0 |
+| large-packages | ubuntu-20.04 |        174.2 |                6 |
+| large-packages | ubuntu-22.04 |        117.2 |                5 |
+
+![](resources/README_files/measurements-plot-1.png)
