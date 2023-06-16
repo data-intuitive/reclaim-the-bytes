@@ -23,7 +23,7 @@ jobs:
           - haskell
           - codeql
           - docker-images
-          # - large-packages
+          - large-packages
 
     steps:
       - name: Check out Maximize Build Space action
