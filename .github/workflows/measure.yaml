@@ -63,19 +63,20 @@ jobs:
           DURATION=$((${{ steps.after.outputs.timestamp }} - ${{ steps.before.outputs.timestamp }}))
           FREED_DISK=$((${{ steps.after.outputs.disk_free }} - ${{ steps.before.outputs.disk_free }}))
           
-          echo "Free space before: ${{ steps.before.outputs.disk_free }}G"
-          echo "Free space after : ${{ steps.after.outputs.disk_free }}G"
-          echo "Space freed      : ${FREED_DISK}G"
+          echo "Free before      : ${{ steps.before.outputs.disk_free }}G"
+          echo "Free after       : ${{ steps.after.outputs.disk_free }}G"
+          echo "Freed            : ${FREED_DISK}G"
           echo "Duration         : ${DURATION}s"
 
           cat > "$OUTPUT_JSON" << HERE
           [{
             "os": "${{ matrix.os }}",
             "to_remove": "${{ matrix.to-remove}}",
-            "space_free_before": "${{ steps.before.outputs.disk_free }}",
-            "space_free_after": "${{ steps.after.outputs.disk_free }}",
-            "space_freed": "${FREED_DISK}",
-            "duration": "${DURATION}"
+            "run": ${{ matrix.run}},
+            "free_before_gb": ${{ steps.before.outputs.disk_free }},
+            "free_after_gb": ${{ steps.after.outputs.disk_free }},
+            "freed_gb": ${FREED_DISK},
+            "duration_s": ${DURATION}
           }]
           HERE
 
