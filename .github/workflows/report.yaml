@@ -78,7 +78,7 @@ jobs:
           HERE
 
       - name: Upload disk space report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: output_json
           path: ${{ steps.report.outputs.output_json }}
@@ -102,7 +102,7 @@ jobs:
           jq -s add "${{ env.REPORT_DIR }}/single_*.json" > "${{ env.REPORT_DIR }}/merged.json"
 
       - name: Upload merged json
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: disk-space-report-markdown
           path: ${{ env.REPORT_DIR }}/merged.json"
