@@ -15,12 +15,20 @@ jobs:
           - ubuntu-22.04
 
     steps:
+      - name: Create dir
+        run: |
+          mkdir /tmp/output
+
       - name: Run du -h
         run: |
-           sudo du -h / --threshold=1G 2>/dev/null | tee /tmp/du-${{matrix.os}}.txt
+          sudo du -h / --threshold=1G 2>/dev/null | tee /tmp/output/du-${{matrix.os}}.txt
+
+      - name: Run env
+        run: |
+          env | tee /tmp/output/env-${{matrix.os}}.txt
 
       - name: Upload du output
         uses: actions/upload-artifact@v3
         with:
-          name: du-h
-          path: /tmp/du-${{matrix.os}}.txt
+          name: output
+          path: /tmp/output
