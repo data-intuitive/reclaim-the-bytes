@@ -95,6 +95,7 @@ jobs:
 
       - name: Merge json files
         run: |
+          tree "${{ env.REPORT_DIR }}"
           jq -s add "${{ env.REPORT_DIR }}/output_jsons/*.json" > "${{ env.REPORT_DIR }}/merged.json"
 
       - name: Upload merged json
