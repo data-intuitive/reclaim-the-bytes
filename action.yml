@@ -41,9 +41,9 @@ inputs:
     required: false
     default: 'true'
   remove-swap:
-    description: 'Remove swap. Execution time: 1s. Space freed: 5GB on /mnt. Default: `true`.'
+    description: 'Remove swap. Execution time: 1s. Space freed: 5GB on /mnt. Default: `false`.'
     required: false
-    default: 'true'
+    default: 'false'
 runs:
   using: "composite"
   steps:

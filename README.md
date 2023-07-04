@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Reclaim the bytes
-        uses: data-intuitive/reclaim-the-bytes@v1
+        uses: data-intuitive/reclaim-the-bytes@v2
         with:
           remove-hosted-tool-cache: true
           remove-go: false
@@ -42,7 +42,7 @@ jobs:
           remove-swift: true
           remove-dotnet: true
           remove-docker-images: true
-          remove-swap: true
+          remove-swap: false
 
       - name: Checkout
         uses: actions/checkout@v3
