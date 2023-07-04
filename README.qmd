@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Reclaim the bytes
-        uses: data-intuitive/reclaim-the-bytes@v1
+        uses: data-intuitive/reclaim-the-bytes@v2
         with:
 {paste(entries, collapse = \"\n\")}
 
