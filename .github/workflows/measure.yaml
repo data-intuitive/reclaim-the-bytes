@@ -77,7 +77,7 @@ jobs:
           HERE
 
       - name: Upload disk space report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: measurement_jsons
           path: ${{ steps.json.outputs.output }}
@@ -105,7 +105,7 @@ jobs:
           tree "${{ env.JSON_DIR }}"
 
       - name: Upload merged json
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: "${{ env.JSON_DIR }}/measurements.json"

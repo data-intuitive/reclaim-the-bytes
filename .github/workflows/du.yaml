@@ -32,7 +32,7 @@ jobs:
           dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100 | tee /tmp/output/apt-${{matrix.os}}.txt
 
       - name: Upload du output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: /tmp/output
